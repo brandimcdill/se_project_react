@@ -7,3 +7,6 @@ The dynamic weather display was created by fetch real-time weather data from the
 A collection of clothing was hard-coded in from a pre-defined array of data, providing useful suggestions that are, also, prefiltered based on the current weather temperature of the user's location.
 
 The "Add garment" modal has been created so that users can add their own clothing options in the future. The clothing cards can, also, be selected to see a larger preview along with its title.
+
+GitHub Pages
+https://brandimcdill.github.io/se_project_react/
