@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import "../App/App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+
 import Header from "../Header/header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../../components/Footer/Footer";
+
+import { coordinates, APIkey } from "../../utils/constants";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -36,7 +38,9 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to fetch weather data:", error);
+      });
   }, []);
   return (
     <div className="page">
@@ -53,6 +57,7 @@ function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={closeActiveModal}
+        isOpen={activeModal === "add-garment"}
       >
         <label htmlFor="name" className="modal__label">
           Name

@@ -59,6 +59,7 @@
 }
 
 .modal__input {
+  width: 100%;
   display: block;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
