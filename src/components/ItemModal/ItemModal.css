@@ -1,0 +1,37 @@
+.modal__image {
+  width: 112.75%;
+  height: 498px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -28px;
+  left: -28px;
+  border-radius: 20px 20px 0 0;
+  z-index: 0;
+}
+.modal__close_preview {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: transparent url(../../assets/close-btn_preview.svg);
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  z-index: 1;
+}
+
+.modal__caption {
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__weather {
+  margin: 15px 0 0 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
