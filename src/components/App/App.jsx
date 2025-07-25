@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../App/App.css";
 
-import Header from "../Header/header";
+import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
