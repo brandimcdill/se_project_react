@@ -19,6 +19,11 @@
   border-style: none;
   z-index: 1;
 }
+.modal__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: first baseline;
+}
 
 .modal__caption {
   margin: 0;
@@ -34,4 +39,17 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+}
+
+.delete-modal__open {
+  border-style: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(255, 77, 0, 1);
+  padding: 0;
 }

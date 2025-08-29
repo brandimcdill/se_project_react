@@ -1,17 +1,25 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onClick }) {
   const handleCardClick = () => {
-    onCardClick(item);
+    onClick(item);
   };
+
+  let nameValue;
+  if (typeof item.name === "object" && item.name !== null) {
+    nameValue = item.name.name;
+  } else {
+    nameValue = item.name;
+  }
+
   return (
     <li className="card">
-      <h2 className="card__name">{item.name}</h2>
+      <h2 className="card__name">{nameValue}</h2>
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.link}
-        alt={item.name}
+        src={item.imageUrl}
+        alt={nameValue}
       />
     </li>
   );

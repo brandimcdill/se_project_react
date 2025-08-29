@@ -1,0 +1,41 @@
+.delete-modal__content {
+  background-color: #fff;
+  position: relative;
+  padding: 60px 20px;
+  max-width: 670px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.delete-modal__title {
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #000;
+}
+
+.delete-modal__title_second {
+  padding: 5px 5px 30px 5px;
+}
+
+.delete-modal__btn {
+  border-style: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+.delete-modal__btn_confirm {
+  color: rgba(255, 77, 0, 1);
+  padding-bottom: 20px;
+}
