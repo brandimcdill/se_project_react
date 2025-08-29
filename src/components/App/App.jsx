@@ -113,7 +113,7 @@ function App() {
           }
           return item;
         });
-        mappedItems.sort((a, b) => new Date(b._id) - new Date(a._id));
+        mappedItems.sort((a, b) => b._id - a._id);
         setClothingItems(mappedItems);
       })
       .catch(console.error);
@@ -134,7 +134,6 @@ function App() {
                   weatherData={weatherData}
                   activeModal={activeModal}
                   onClick={handleCardClick}
-                  currentTemperatureUnit={currentTemperatureUnit}
                   clothingItems={clothingItems}
                 />
               }

@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function AddItemModal({ onClose, isOpen, onSubmit }) {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
 
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange } = useForm(defaultValues, isOpen);
 
   const handleSubmit = (event) => {
     onSubmit(event, values);

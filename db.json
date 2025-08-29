@@ -101,6 +101,12 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "new hoodie",
+      "imageUrl": "https://png.pngtree.com/png-vector/20240927/ourlarge/pngtree-over-sized-hoodie-isolated-on-white-transparent-background-png-image_13930268.png",
+      "weather": "warm",
+      "_id": 17
     }
   ]
 }
