@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-function _checkresponse(res) {
+function _checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
@@ -8,7 +8,7 @@ function _checkresponse(res) {
 }
 
 function _request(url, options) {
-  return fetch(url, options).then(_checkresponse);
+  return fetch(url, options).then(_checkResponse);
 }
 
 function getItems() {
@@ -31,4 +31,4 @@ function deleteItem(id) {
   });
 }
 
-export { getItems, _checkresponse, _request, addNewItem, deleteItem };
+export { getItems, _checkResponse, _request, addNewItem, deleteItem };

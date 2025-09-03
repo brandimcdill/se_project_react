@@ -15,7 +15,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import {
   getItems,
-  _checkresponse,
+  _checkResponse,
   _request,
   addNewItem,
   deleteItem,
@@ -33,6 +33,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -68,12 +70,31 @@ function App() {
       });
   };
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
 
   const handleAddItemSubmit = (event, values) => {
     event.preventDefault();
+
+    setIsLoading(true);
+    console.log("Loading started, isLoading:", true);
     addNewItem(values)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
@@ -81,6 +102,10 @@ function App() {
       })
       .catch((error) => {
         console.error("Failed to fetch new item:", error);
+      })
+      .finally(() => {
+        console.log("Loading finished, isLoading:", false);
+        setIsLoading(false);
       });
   };
 
@@ -161,6 +186,7 @@ function App() {
           onClose={closeActiveModal}
           isOpen={activeModal === "add-garment"}
           onSubmit={handleAddItemSubmit}
+          isLoading={isLoading}
         />
         <ItemModal
           activeModal={activeModal}

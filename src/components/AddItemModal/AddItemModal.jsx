@@ -1,12 +1,15 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
 
-export default function AddItemModal({ onClose, isOpen, onSubmit }) {
-  const defaultValues = { name: "", imageUrl: "", weather: "" };
-
-  const { values, handleChange } = useForm(defaultValues, isOpen);
-
+export default function AddItemModal({ onClose, isOpen, onSubmit, isLoading }) {
+  const { values, handleChange } = useForm(isOpen);
+  console.log(
+    "AddItemModal isLoading:",
+    isLoading,
+    "buttonText will be:",
+    isLoading ? "Saving..." : "Add garment"
+  );
   const handleSubmit = (event) => {
     onSubmit(event, values);
   };
@@ -14,7 +17,8 @@ export default function AddItemModal({ onClose, isOpen, onSubmit }) {
   return (
     <ModalWithForm
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
+      isLoading={isLoading}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -24,7 +28,7 @@ export default function AddItemModal({ onClose, isOpen, onSubmit }) {
         <input
           type="text"
           name="name"
-          id="garment-name"
+          id="name"
           className="modal__input"
           placeholder="Name"
           required
@@ -39,7 +43,7 @@ export default function AddItemModal({ onClose, isOpen, onSubmit }) {
         <input
           type="url"
           name="imageUrl"
-          id="garment-link"
+          id="imageUrl"
           className="modal__input"
           placeholder="Image URL"
           required
