@@ -122,3 +122,17 @@
 .modal__submit:hover {
   background: #00000099;
 }
+
+.modal__redirect-button {
+  background: none;
+  border: none;
+  color: #0000004d;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.modal__redirect-button:hover{
+  color: #00000099;
+}
