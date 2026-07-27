@@ -1,11 +1,11 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 
-export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText }) {
+export default function LoginModal ({ onClose, isOpen, handleSubmit, onSubmit, orButtonText }) {
     return (
         <ModalWithForm
-        title="Sign Up"
-        buttonText={"Sign Up"}
+        title="Log In"
+        buttonText={"Log In"}
         onClose={onClose}
         isOpen={isOpen}
         onSubmit={handleSubmit}

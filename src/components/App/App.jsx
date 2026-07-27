@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { setToken, getToken } from "./utils/token";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import {
