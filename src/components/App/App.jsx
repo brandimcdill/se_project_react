@@ -13,6 +13,8 @@ import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { setToken, getToken } from "./utils/token";
 
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import {
   getItems,
@@ -36,6 +38,9 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -146,6 +151,7 @@ function App() {
   }, []);
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -204,6 +210,7 @@ function App() {
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
