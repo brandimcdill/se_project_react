@@ -268,7 +268,13 @@ const handleSignOut = () => {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} isLoggedIn={isLoggedIn}/>
+          <Header 
+          handleAddClick={handleAddClick} 
+          weatherData={weatherData} 
+          isLoggedIn={isLoggedIn}
+          onRegisterClick={() => setActiveModal("register")}
+          onLoginClick={() => setActiveModal("login")}
+          />
           <Routes>
             <Route
               path="/"

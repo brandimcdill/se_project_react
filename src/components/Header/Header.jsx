@@ -6,7 +6,7 @@ import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData, isLoggedIn }) {
+function Header({ handleAddClick, weatherData, isLoggedIn, onRegisterClick, onLoginClick }) {
   const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -59,14 +59,14 @@ function Header({ handleAddClick, weatherData, isLoggedIn }) {
         ) : (
           <div className="header__auth-container">
             <button
-              onClick={() => setActiveModal("register")}
+              onClick={onRegisterClick}
               type="button"
               className="header__register-btn"
             >
               Sign Up
             </button>
             <button
-              onClick={() => setActiveModal("login")}
+              onClick={onLoginClick}
               type="button"
               className="header__login-btn"
             >
