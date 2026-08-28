@@ -22,6 +22,7 @@ export default function RegisterModal({
   }, [isOpen]);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     onSubmit(name, avatar, email, password);
   };
 
@@ -42,7 +43,7 @@ export default function RegisterModal({
         </button>
       }
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email
         <input
           type="email"
@@ -50,10 +51,12 @@ export default function RegisterModal({
           id="register-email"
           className="modal__input"
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password
         <input
           type="password"
@@ -62,10 +65,12 @@ export default function RegisterModal({
           className="modal__input"
           placeholder="Password"
           minLength="8"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
@@ -80,7 +85,7 @@ export default function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="url" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar URL
         <input
           type="url"
