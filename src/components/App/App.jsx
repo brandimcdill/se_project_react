@@ -104,6 +104,7 @@ function App() {
       if (userData) {
         setCurrentUser(userData);
         closeActiveModal();
+        navigate("/");
       }
     })
     .catch((err) => {
