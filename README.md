@@ -6,3 +6,7 @@
 
 GitHub Pages
 https://brandimcdill.github.io/se_project_react/
+
+## Project Back-End Repository
+The back-end server repository for this application can be found here:
+https://github.com/brandimcdill/se_project_express
