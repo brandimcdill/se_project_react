@@ -1,11 +1,30 @@
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 
-export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText }) {
+export default function RegisterModal ({ onClose, isOpen, onSubmit, handleLoginClick }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [avatar, setAvatar] = useState("");
+
+    useEffect(() => {
+        if (isOpen) {
+            setEmail("");
+            setPassword("");
+            setName("");
+            setAvatar("");
+        }
+    }, [isOpen]);
+
+    const handleSubmit = (e) => {
+        onSubmit(name, avatar, email, password);
+    };
+
     return (
         <ModalWithForm
         title="Sign Up"
-        buttonText={"Sign Up"}
+        buttonText="Sign Up"
         onClose={onClose}
         isOpen={isOpen}
         onSubmit={handleSubmit}
@@ -19,7 +38,7 @@ export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText
                 <input 
                 type="email" 
                 name="email" 
-                id="email" 
+                id="register-email" 
                 className="modal__input" 
                 placeholder="Email" 
                 required 
@@ -30,10 +49,10 @@ export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText
                 <input 
                 type="password" 
                 name="password" 
-                id="password" 
+                id="register-password" 
                 className="modal__input" 
                 placeholder="Password" 
-                minlength="8"
+                minLength="8"
                 required 
                 /> 
             </label>
@@ -42,11 +61,13 @@ export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText
                 <input 
                 type="text" 
                 name="name" 
-                id="name" 
+                id="register-name" 
                 className="modal__input" 
                 placeholder="Name" 
                 minLength="2"
                 maxLength="30"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required 
                 /> 
             </label>
@@ -54,14 +75,15 @@ export default function RegisterModal ({ onClose, isOpen, onSubmit, orButtonText
                 Avatar URL
                 <input 
                 type="url" 
-                name="url" 
-                id="url" 
+                name="avatar" 
+                id="register-avatar" 
                 className="modal__input" 
                 placeholder="Avatar URL" 
+                value={avatar}
+                onChange={(e) => setAvatar(e.target.value)}
                 required 
                 /> 
             </label>
-             
         </ModalWithForm>
     )
 

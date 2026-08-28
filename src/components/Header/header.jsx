@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
-function Header({ handleAddClick, weatherData }) {
+import CurrentUserContext  from "../../contexts/CurrentUserContext";
+
+
+function Header({ handleAddClick, weatherData, isLoggedIn}) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const firstLetter = currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : "";
 
   return (
     <header className="header">
@@ -22,24 +29,32 @@ function Header({ handleAddClick, weatherData }) {
       </div>
       <div className="header__nav">
         <ToggleSwitch />
-        <button
+        {isLoggedIn ? (
+          <>
+          <button
           onClick={handleAddClick}
           type="button"
           className="header__add-clothes-btn"
         >
-          {" "}
           + Add Clothes
-        </button>
+        </button> 
         <Link to="/profile" className="header__link">
           <div className="header__user-container">
-            <p className="header__username">Terrence Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
+            <p className="header__username">{currentUser?.name}</p>
+            {currentUser?.avatar ? (
+              < img src={currentUser.avatar} alt={currentUser.name} className="header__avatar" />
+            ) : (
+              <div className="header__avatar-placeholder">{firstLetter}</div>
+            )}
           </div>
         </Link>
+        </>
+        ) : ( 
+          <div className="header__auth-container">
+            <button onClick={() => setActiveModal("register")} type="button" className="header__register-btn">Sign Up</button>
+            <button onClick={() => setActiveModal("login")} type="button" className="header__login-btn">Log In</button>
+          </div>
+        )}
       </div>
     </header>
   );
