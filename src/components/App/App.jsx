@@ -279,6 +279,7 @@ const handleSignOut = () => {
                   onClick={handleCardClick}
                   clothingItems={clothingItems}
                   onCardLike={handleCardLike}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />
