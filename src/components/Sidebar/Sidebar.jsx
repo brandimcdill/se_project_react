@@ -2,7 +2,7 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "../Sidebar/Sidebar.css";
 
-function Sidebar({ handleEditProfileClick }) {
+function Sidebar({ handleEditProfileClick, handleSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
   const firstLetter = currentUser?.name
