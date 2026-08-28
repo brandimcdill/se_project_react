@@ -30,7 +30,7 @@ import {
   removeCardLike
 } from "../../utils/api";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import ClothesSection from "../ClothesSection/ClothesSection";
+
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -209,7 +209,7 @@ const handleSignOut = () => {
 };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
