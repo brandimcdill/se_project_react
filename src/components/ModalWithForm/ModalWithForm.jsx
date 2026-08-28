@@ -7,7 +7,7 @@ function ModalWithForm({
   onClose,
   isOpen,
   onSubmit,
-  orButtonText
+  orButtonText,
 }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import  CurrentUserContext  from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import "./ItemModal.css";
 function ItemModal({ activeModal, onClose, card, onDelete }) {
@@ -23,14 +23,14 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
           </div>
 
           {isOwn && (
-          <button
-            className="delete-modal__open"
-            onClick={onDelete}
-            type="button"
-          >
-            Delete Item
-          </button>
-        )}
+            <button
+              className="delete-modal__open"
+              onClick={onDelete}
+              type="button"
+            >
+              Delete Item
+            </button>
+          )}
         </footer>
       </div>
     </div>

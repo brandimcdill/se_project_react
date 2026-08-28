@@ -20,10 +20,10 @@ function getItems() {
 function addNewItem(item, token) {
   return _request(`${baseUrl}/items`, {
     method: "POST",
-    headers: { 
-       "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-     },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(item),
   });
 }
@@ -31,10 +31,10 @@ function addNewItem(item, token) {
 function deleteItem(id, token) {
   return _request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    }
+    },
   });
 }
 
@@ -45,7 +45,7 @@ function updateProfile({ name, avatar }, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({name, avatar }),
+    body: JSON.stringify({ name, avatar }),
   });
 }
 
@@ -69,5 +69,13 @@ function removeCardLike(id, token) {
   });
 }
 
-
-export { getItems, _checkResponse, _request, addNewItem, deleteItem, updateProfile, addCardLike, removeCardLike };
+export {
+  getItems,
+  _checkResponse,
+  _request,
+  addNewItem,
+  deleteItem,
+  updateProfile,
+  addCardLike,
+  removeCardLike,
+};

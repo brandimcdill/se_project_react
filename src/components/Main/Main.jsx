@@ -20,7 +20,14 @@ function Main({ weatherData, onClick, clothingItems, onCardLike, isLoggedIn }) {
               return item.weather === weatherData.type;
             })
             .map((item) => {
-              return <ItemCard key={item._id} item={item} onClick={onClick} isLoggedIn={isLoggedIn} />;
+              return (
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  onClick={onClick}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
             })}
         </ul>
       </section>

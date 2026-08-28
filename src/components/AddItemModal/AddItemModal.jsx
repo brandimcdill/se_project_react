@@ -8,7 +8,7 @@ export default function AddItemModal({ onClose, isOpen, onSubmit, isLoading }) {
     "AddItemModal isLoading:",
     isLoading,
     "buttonText will be:",
-    isLoading ? "Saving..." : "Add garment"
+    isLoading ? "Saving..." : "Add garment",
   );
   const handleSubmit = (event) => {
     onSubmit(event, values);
