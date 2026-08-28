@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../DeleteModal/DeleteModal.css";
 
 function DeleteModal({ activeModal, onConfirm, onCancel, onClose, card }) {
