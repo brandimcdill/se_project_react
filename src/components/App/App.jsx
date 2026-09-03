@@ -181,30 +181,31 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked})  => {
-  const token = getToken();
+    const token = getToken();
 
         if (!isLiked) {
         addCardLike(id, token)
-        .then((updatedCard) => {
+          .then((updatedCard) => {
+          const cleanUpdatedCard = updatedCard.data ? updatedCard.data : updatedCard; 
+
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? cleanUpdatedCard : item))
           );
         })
         .catch((err) => console.error("Error adding like:", err));
       } else {
       removeCardLike(id, token) 
         .then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => {
-              const cleanUpdatedCard = updatedCard.data ? updatedCard.data : updatedCard;
-              return item._id === id ? updatedCard : item
-            })
-          );
+          console.log("Unlike server response structure:", updatedCard);
+
+          const cleanUpdatedCard = updatedCard.data ? updatedCard.data : updatedCard;
+          setClothingItems((cards) => 
+              cards.map((item) => (item._id === id ? cleanUpdatedCard : item))
+            );
         })
       .catch((err) => console.error("Error removing like:", err));
-    }
+      }
 };
-
 const handleSignOut = () => {
   removeToken();
   setIsLoggedIn(false);
@@ -308,6 +309,8 @@ const handleSignOut = () => {
                   handleAddClick={handleAddClick}
                   handleEditProfileClick={() => setActiveModal("edit-profile")}
                   handleSignOut={handleSignOut}
+                  isLoggedIn={isLoggedIn}
+                  onCardLike={handleCardLike}
                 />
                 </ProtectedRoute>
               }
