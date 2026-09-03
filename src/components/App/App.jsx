@@ -167,8 +167,9 @@ function App() {
     const jwt = getToken();
 
     addNewItem(values, jwt)
-      .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+      .then((res) => {
+        const newItem = res.data ? res.data : res;
+        setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
       .catch((error) => {
@@ -181,7 +182,8 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked})  => {
-  const token = localStorage.getItem("jwt");
+  const token = getToken();
+
         if (!isLiked) {
         addCardLike(id, token)
         .then((updatedCard) => {
@@ -194,7 +196,10 @@ function App() {
       removeCardLike(id, token) 
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => {
+              const cleanUpdatedCard = updatedCard.data ? updatedCard.data : updatedCard;
+              return item._id === id ? updatedCard : item
+            })
           );
         })
       .catch((err) => console.error("Error removing like:", err));
