@@ -2,7 +2,16 @@
   width: 323px;
   position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card__header {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .card__name {
@@ -19,6 +28,27 @@
   border-radius: 4px;
 }
 
+.card__like-btn {
+  background-image: url("../../assets/like_default.svg");
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.1s ease;
+}
+
+.card__like-btn_active {
+background-image: url("../../assets/like_selected");
+}
+
+.like_btn-img {
+  width: 16px;
+  height: 16px;
+}
 .card__image {
   width: 100%;
   border: 1px solid #0000004d;

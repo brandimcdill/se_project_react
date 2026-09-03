@@ -2,6 +2,7 @@ import { useContext } from "react";
 import CurrentUserContext  from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 
+
 function ItemCard({ item, onClick, onCardLike, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -33,7 +34,7 @@ function ItemCard({ item, onClick, onCardLike, isLoggedIn }) {
         type="button"
         className={itemLikeButtonClassName}
         onClick={handleLike}
-        aria-label="Like item"
+        aria-label={isLiked ? "Unlike item" : "Like item"}
         />
       )}
       </div>

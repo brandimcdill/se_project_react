@@ -167,13 +167,12 @@ function App() {
     const jwt = getToken();
 
     addNewItem(values, jwt)
-      .then((res) => {
-        const newItem = res.data ? res.data : res;
-        setClothingItems([newItem, ...clothingItems]);
+      .then((data) => {
+        setClothingItems([data.data, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((error) => {
-        console.error("Failed to fetch new item:", error);
+      .catch((err) => {
+        console.error("Failed to fetch new item:", err);
       })
       .finally(() => {
         console.log("Loading finished, isLoading:", false);
