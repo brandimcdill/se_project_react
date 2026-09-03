@@ -1,19 +1,68 @@
 .sidebar {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 200px;
+
+}
+
+.sidebar__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .sidebar__avatar {
-  margin: 16px;
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #56a2e8;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .sidebar__username {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.sidebar__actions {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+}
+
+.sidebar__edit-btn,
+.sidebar__logout-btn {
+  border-style: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
   line-height: 1;
   color: rgba(0, 0, 0, 1);
-  text-wrap: nowrap;
-  padding-top: 15px;
 }
+
+.sidebar__edit-btn:hover,
+.sidebar__logout-btn:hover {
+  opacity: 0.6;
+}
+

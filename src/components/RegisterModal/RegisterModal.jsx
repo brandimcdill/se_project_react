@@ -44,7 +44,7 @@ export default function RegisterModal({
       }
     >
       <label htmlFor="register-email" className="modal__label">
-        Email
+        Email*
         <input
           type="email"
           name="email"
@@ -57,7 +57,7 @@ export default function RegisterModal({
         />
       </label>
       <label htmlFor="register-password" className="modal__label">
-        Password
+        Password*
         <input
           type="password"
           name="password"
@@ -71,7 +71,7 @@ export default function RegisterModal({
         />
       </label>
       <label htmlFor="register-name" className="modal__label">
-        Name
+        Name*
         <input
           type="text"
           name="name"
@@ -86,7 +86,7 @@ export default function RegisterModal({
         />
       </label>
       <label htmlFor="register-avatar" className="modal__label">
-        Avatar URL
+        Avatar URL*
         <input
           type="url"
           name="avatar"

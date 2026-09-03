@@ -40,7 +40,7 @@ export default function LoginModal({
       }
     >
       <label htmlFor="login-email" className="modal__label">
-        Email
+        Email*
         <input
           type="email"
           name="email"
@@ -53,7 +53,7 @@ export default function LoginModal({
         />
       </label>
       <label htmlFor="login-password" className="modal__label">
-        Password
+        Password*
         <input
           type="password"
           name="password"

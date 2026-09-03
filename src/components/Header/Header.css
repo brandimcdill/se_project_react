@@ -46,7 +46,37 @@
 .header__username {
   margin: 0;
 }
+
 .header__link {
   text-decoration: none;
   color: black;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+
+.header__auth-container{
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  border-style: none;
+  padding: 0;
+}
+
+.header__register-btn {
+  border-style: none;
+  margin-left: 10px;
+  padding: 0;
+}
+
+.header__login-btn {
+  border-style: none;
+  margin:   0 10px;
+  padding: 0;
 }

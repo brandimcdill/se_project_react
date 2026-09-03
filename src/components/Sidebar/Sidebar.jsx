@@ -11,6 +11,7 @@ function Sidebar({ handleEditProfileClick, handleSignOut }) {
 
   return (
     <div className="sidebar">
+      <div className="sidebar__profile">
       {currentUser?.avatar ? (
         <img
           className="sidebar__avatar"
@@ -21,7 +22,8 @@ function Sidebar({ handleEditProfileClick, handleSignOut }) {
         <div className="sidebar__avatar-placeholder">{firstLetter}</div>
       )}
       <p className="sidebar__username">{currentUser?.name}</p>
-
+    </div>
+    
       <div className="sidebar__actions">
         <button
           type="button"

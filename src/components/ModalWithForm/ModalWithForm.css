@@ -105,6 +105,13 @@
   accent-color: #000;
 }
 
+.modal__submit-container{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+ 
+}
+
 .modal__submit {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 500;
@@ -116,7 +123,7 @@
   height: 36px;
   border-radius: 4px;
   border-style: none;
-  margin-top: 15px;
+  
 }
 
 .modal__submit:hover {
@@ -126,11 +133,17 @@
 .modal__redirect-button {
   background: none;
   border: none;
-  color: #0000004d;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
   padding: 0;
+  color: #0000004d;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2; 
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-align: left;
+  margin: 0 0 0 16px;
+  
 }
 
 .modal__redirect-button:hover {
