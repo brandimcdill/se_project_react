@@ -1,22 +1,21 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
-export function useForm(isOpen) {
-  const memoizedValue = useMemo(() => {
-    const defaultValues = { name: "", imageUrl: "", weather: "" };
-    return defaultValues;
-  }, []);
+export function useForm(initialValues, isOpen) {
 
-  const [values, setValues] = useState(memoizedValue);
+  const [values, setValues] = useState(initialValues);
+
+ 
+
   useEffect(() => {
-    const resetForm = () => {
-      setValues(memoizedValue);
-    };
-    resetForm();
-  }, [isOpen, memoizedValue]);
+    if (isOpen) {
+      setValues(initialValues);
+    }
+  }, [isOpen]);
+
   const handleChange = (event) => {
     const { value, name } = event.target;
     setValues({ ...values, [name]: value });
   };
 
-  return { memoizedValue, values, handleChange, setValues };
+  return { values, handleChange, setValues };
 }

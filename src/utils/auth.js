@@ -1,3 +1,4 @@
+import { _checkResponse } from "./api";
 export const BASE_URL = "http://localhost:3001";
 
 export const register = (name, avatar, email, password) => {
@@ -8,9 +9,7 @@ export const register = (name, avatar, email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(_checkResponse);
 };
 
 export const authorize = (email, password) => {
@@ -21,9 +20,7 @@ export const authorize = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(_checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -33,7 +30,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(_checkResponse);
 };

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 export default function RegisterModal({
   onClose,
@@ -7,23 +7,13 @@ export default function RegisterModal({
   onSubmit,
   handleLoginClick,
 }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+const { values, handleChange } = useForm({  email: "", password: "", name: "", avatar: ""}, isOpen);
 
-  useEffect(() => {
-    if (isOpen) {
-      setEmail("");
-      setPassword("");
-      setName("");
-      setAvatar("");
-    }
-  }, [isOpen]);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(name, avatar, email, password);
+    onSubmit(values.name, values.avatar, values.email, values.password);
   };
 
   return (
@@ -51,8 +41,8 @@ export default function RegisterModal({
           id="register-email"
           className="modal__input"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         />
       </label>
@@ -65,8 +55,8 @@ export default function RegisterModal({
           className="modal__input"
           placeholder="Password"
           minLength="8"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
         />
       </label>
@@ -80,8 +70,8 @@ export default function RegisterModal({
           placeholder="Name"
           minLength="2"
           maxLength="30"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={values.name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -93,8 +83,8 @@ export default function RegisterModal({
           id="register-avatar"
           className="modal__input"
           placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={values.avatar}
+          onChange={handleChange}
           required
         />
       </label>

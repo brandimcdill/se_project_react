@@ -3,7 +3,7 @@ import { useForm } from "../../hooks/useForm";
 
 
 export default function AddItemModal({ onClose, isOpen, onSubmit, isLoading }) {
-  const { values, handleChange } = useForm(isOpen);
+  const { values, handleChange } = useForm({ name: "", imageUrl: "", weather: "" }, isOpen);
   console.log(
     "AddItemModal isLoading:",
     isLoading,
@@ -58,6 +58,7 @@ export default function AddItemModal({ onClose, isOpen, onSubmit, isLoading }) {
             name="weather"
             id="hot"
             type="radio"
+            className="modal__radio-input"
             onChange={handleChange}
             value="hot"
             checked={values.weather === "hot"}

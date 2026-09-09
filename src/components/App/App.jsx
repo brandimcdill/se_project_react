@@ -16,7 +16,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { coordinates, apiKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { setToken, getToken, removeToken } from "../../utils/token";
-import * as api from "../../utils/auth";
+import * as auth from "../../utils/auth";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -69,6 +69,21 @@ function App() {
   const openDeleteModal = () => {
     setActiveModal("delete");
   };
+  
+  function handleSubmit(request) {
+    const jwt = getToken();
+    setIsLoading(true);
+    request(jwt)
+    .then(() => {
+      closeActiveModal();
+    })
+    .catch((err) => {
+      console.error("Submission request failed:", err);
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
+  };
 
   const handleCardDelete = (_id) => {
     const jwt = getToken();
@@ -88,38 +103,28 @@ function App() {
   };
 
   const handleLoginSubmit = (email, password) => {
-    if (!email || !password) {
-      return;
-    }
-    api.authorize(email, password)
-    .then((res) => {
-      if (res.token) {
-        setToken(res.token);
-        setIsLoggedIn(true);
-
-        return api.checkToken(res.token);
-      }
-    })
-    .then((userData) => {
-      if (userData) {
-        setCurrentUser(userData);
-        closeActiveModal();
-        navigate("/");
-      }
-    })
-    .catch((err) => {
-      console.error("Login failed:", err);
-    });
+    const makeRequest = () => {
+      return auth.authorize(email, password).then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          return auth.checkToken(res.token).then((userData) => {
+            const cleanUser = userData.data ? userData.data : userData;
+            setCurrentUser(cleanUser);
+          });
+        }
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleRegisterSubmit = (name, avatar, email, password) => {
-    api.register(name, avatar, email, password)
-    .then(() => {
+   const makeRequest =() => {
+    return auth.register(name, avatar, email, password).then(() => {
       handleLoginSubmit(email, password);
-    })
-    .catch((err) => {
-      console.error("Registration failed:", err);
     });
+   };
+   handleSubmit(makeRequest);
   };
 
   const handleEditProfileSubmit = (values) => {
@@ -166,25 +171,21 @@ function App() {
 
     const jwt = getToken();
 
-    addNewItem(values, jwt)
-      .then((data) => {
-        setClothingItems([data.data, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error("Failed to fetch new item:", err);
-      })
-      .finally(() => {
-        console.log("Loading finished, isLoading:", false);
-        setIsLoading(false);
+    const makeRequest = (jwt) => {
+      return addNewItem(values, jwt).then((response) => {
+        const cleanCard = response.data ? response.data : response;
+        setClothingItems([cleanCard, ...clothingItems]);
       });
+    };
+    handleSubmit(makeRequest);
   };
+  
 
-  const handleCardLike = ({ id, isLiked})  => {
-    const token = getToken();
+  const handleCardLike = ({ id, isLiked })  => {
+    const jwt = getToken();
 
         if (!isLiked) {
-        addCardLike(id, token)
+        addCardLike(id, jwt)
           .then((updatedCard) => {
           const cleanUpdatedCard = updatedCard.data ? updatedCard.data : updatedCard; 
 
@@ -194,7 +195,7 @@ function App() {
         })
         .catch((err) => console.error("Error adding like:", err));
       } else {
-      removeCardLike(id, token) 
+      removeCardLike(id, jwt) 
         .then((updatedCard) => {
           console.log("Unlike server response structure:", updatedCard);
 
@@ -255,7 +256,7 @@ const handleSignOut = () => {
       return;
     }
 
-    api.checkToken(jwt)
+    auth.checkToken(jwt)
     .then((user) => {
       setIsLoggedIn(true);
       setCurrentUser(user);
