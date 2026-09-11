@@ -1,25 +1,30 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 function EditProfileModal({ isOpen, onClose, onSubmit, isLoading }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const { values, handleChange, setValues } = useForm(
+    { name: "" , avatar: "" },
+    isOpen
+  );
 
   useEffect(() => {
-    if (currentUser) {
-      setName(currentUser.name || "");
-      setAvatar(currentUser.avatar || "");
+    if (isOpen && currentUser) {
+      setValues({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
     }
-  }, [currentUser, isOpen]);
+  }, [currentUser, isOpen, setValues]);
 
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleAvatarChange = (e) => setAvatar(e.target.value);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, avatar });
+    onSubmit({ name: values.name, avatar: values.avatar });
   };
 
   return (
@@ -35,8 +40,8 @@ function EditProfileModal({ isOpen, onClose, onSubmit, isLoading }) {
               name="name"
               placeholder="Name"
               className="modal__input"
-              value={name}
-              onChange={handleNameChange}
+              value={values.name}
+              onChange={handleChange}
               required
             />
           </label>
@@ -47,8 +52,8 @@ function EditProfileModal({ isOpen, onClose, onSubmit, isLoading }) {
               name="avatar"
               placeholder="Avatar URL"
               className="modal__input"
-              value={avatar}
-              onChange={handleAvatarChange}
+              value={values.avatar}
+              onChange={handleChange}
               required
             />
           </label>
