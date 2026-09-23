@@ -1,5 +1,5 @@
 import { _checkResponse } from "./api";
-export const BASE_URL = process.env.NODE_ENV === "production" ? "https://wtwrmcdill.networkguru.com" : "http://localhost:3001";
+export const BASE_URL = process.env.NODE_ENV === "production" ? "https://api.wtwrmcdill.networkguru.com" : "http://localhost:3001";
 
 export const register = (name, avatar, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
