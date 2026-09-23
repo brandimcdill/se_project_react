@@ -1,4 +1,4 @@
-const baseUrl = process.env.NODE_ENV === "production" ? "https://wtwrmcdill.networkguru.com" : "http://localhost:3001";
+const baseUrl = process.env.NODE_ENV === "production" ? "https://api.wtwrmcdill.networkguru.com" : "http://localhost:3001";
 
 
 function _checkResponse(res) {
